@@ -235,7 +235,7 @@ const pinToIPFS = async (file, metadata) => {
    
     console.log('minting')
      try{
-        url = await pinToIPFS(selectedFile)
+        url = await pinToIPFS(selectedFile, false)
      }catch(error){
          return {
              success: false,
@@ -249,7 +249,7 @@ const pinToIPFS = async (file, metadata) => {
      metadata.description = `${address} SafuScorecard`;
    
      //make pinata call
-     const pinataResponse = await pinToIPFS(metadata);
+     const pinataResponse = await pinToIPFS(metadata, true);
      if (!pinataResponse.success) {
          return {
              success: false,
