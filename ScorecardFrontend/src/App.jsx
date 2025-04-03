@@ -114,7 +114,7 @@ function App() {
         canvas.toBlob((blob) => {
           const file = new File([blob], "MySafuScorecard.png", { type: "image/png" });
           setSelectedFile(file);
-      }, "image/jpg");
+      }, "image/png");
       };
     };
 
