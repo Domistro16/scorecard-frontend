@@ -225,8 +225,7 @@ const pinToIPFS = async (file) => {
    
     console.log('minting')
      try{
-        const url = await pinToIPFS(selectedFile)
-        url = upload.data.url
+        url = await pinToIPFS(selectedFile)
      }catch(error){
          return {
              success: false,
