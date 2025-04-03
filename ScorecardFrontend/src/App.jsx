@@ -194,15 +194,27 @@ function App() {
     }
   };
 
-  const pinToIPFS = async (metadata) => {
-    try {
-      const upload = await axios.post('https://tipper-server.onrender.com/api/nft/upload', metadata)
-      url = upload.data.url
-      return {success: true, pinataUrl: url}
-    } catch (error) {
-      return {success: false, message: error.message}
-    }
+ 
+const pinToIPFS = async (file) => {
+  try {
+      const formData = new FormData();
+      formData.append("file", file); // Attach the file
 
+      const upload = await axios.post(
+          "https://tipper-server.onrender.com/api/nft/upload",
+          formData,
+          {
+              headers: {
+                  "Content-Type": "multipart/form-data",
+              },
+          }
+      );
+
+      const url = upload.data.url;
+      return { success: true, pinataUrl: url };
+  } catch (error) {
+      return { success: false, message: error.message };
+  }
 
 
   }
@@ -213,8 +225,7 @@ function App() {
    
     console.log('minting')
      try{
-        const upload = await axios.post('https://tipper-server.onrender.com/api/nft/upload', selectedFile)
-
+        const url = await pinToIPFS(selectedFile)
         url = upload.data.url
      }catch(error){
          return {
