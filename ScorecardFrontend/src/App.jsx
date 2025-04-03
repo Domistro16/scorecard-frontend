@@ -196,10 +196,7 @@ function App() {
 
   const pinToIPFS = async (metadata) => {
     try {
-      const upload = await axios.post({
-        url: '`https://tipper-server.onrender.com/api/nft/upload',
-        data: selectedFile
-      })
+      const upload = await axios.post('https://tipper-server.onrender.com/api/nft/upload',selectedFile)
       url = upload.data.url
       return {success: true, pinataUrl: url}
     } catch (error) {
@@ -214,11 +211,9 @@ function App() {
     let url = "";
     //error handling
    
+    console.log('minting')
      try{
-        const upload = await axios.post({
-          url: '`https://tipper-server.onrender.com/api/nft/upload',
-          data: selectedFile
-        })
+        const upload = await axios.post('https://tipper-server.onrender.com/api/nft/upload', selectedFile)
 
         url = upload.data.url
      }catch(error){
