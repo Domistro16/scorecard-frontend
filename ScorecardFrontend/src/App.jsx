@@ -203,7 +203,8 @@ function App() {
 const pinToIPFS = async (file, metadata) => {
   try {
     if(metadata == false){
-     /*  const formData = new FormData();
+      console.log("Uploading file to Pinata...");
+     const formData = new FormData();
       formData.append("file", file); // Attach the file
 
       const upload = await axios.post(
@@ -216,38 +217,16 @@ const pinToIPFS = async (file, metadata) => {
           }
       );
 
-      const url = upload.data.url; */
+      const url = upload.data.url; 
 
-      const upload = await pinata.pinFileToIPFS(file, {
-        pinataMetadata: {
-          name: "MySafuScorecard",
-        },
-        pinataOptions: {
-          cidVersion: 0,
-      },
-    });
-      const url = `https://gateway.pinata.cloud/ipfs/${upload.IpfsHash}`;
-      console.log("File uploaded to Pinata:", url);
       return { success: true, pinataUrl: url };
     }else{
-     /*  const upload = await axios.post(
+        const upload = await axios.post(
         "https://tipper-server.onrender.com/api/nft/uploadMetadata",
         file)
 
         const url = upload.data.url;
-        return { success: true, pinataUrl: url }; */
-
-        const upload = await pinata.pinJSONToIPFS(file, {
-          pinataMetadata: {
-            name: "Scorecard_Metadata",
-          },
-          pinataOptions: {
-            cidVersion: 0,
-        },
-      });
-        const url = `https://gateway.pinata.cloud/ipfs/${upload.IpfsHash}`;
-        console.log("Metadata uploaded to Pinata:", url);
-        return { success: true, pinataUrl: url };
+        return { success: true, pinataUrl: url }; 
     }
   } catch (error) {
       return { success: false, message: error.message };
