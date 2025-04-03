@@ -8,14 +8,9 @@ import { useSendTransaction, useWriteContract } from 'wagmi'
 import { parseEther } from 'viem'
 import { GoDownload } from "react-icons/go";
 import { GoScreenFull } from "react-icons/go";
-import { PinataSDK } from "pinata"
 import contractABI from '../contract-abi.json';
 
-const pinata = new PinataSDK({
-  pinataJwt: `${import.meta.env.VITE_PINATA_JWT}`,
-  pinataGateway: `${import.meta.env.VITE_GATEWAY_URL}`,
-  pinataGatewayKey: `RYbSwiwV6LAgR3S-rbP1LkRdM5RCvzcNye36KILrRw07RRO4hj6fUS9dXtH7PROv`
-})
+
 
 const contractAddress = "0x000CBc0A2661999f4AaD5A850d756Cce6182bba3";
 
@@ -199,17 +194,20 @@ function App() {
     }
   };
 
-  const pinToIPFS = async () => {
+  const pinToIPFS = async (metadata) => {
     try {
-      const upload = await pinata.upload.public.file(metadata)
-
-      return {success: true, pinataUrl: "https://gateway.pinata.cloud/ipfs/" + upload.cid}
+      const upload = await axios.post({
+        url: '`https://tipper-server.onrender.com/api/nft/upload',
+        data: selectedFile
+      })
+      url = upload.data.url
+      return {success: true, pinataUrl: url}
     } catch (error) {
       return {success: false, message: error.message}
     }
 
 
-    
+
   }
   const mintNFT = async() => {
 
@@ -217,8 +215,12 @@ function App() {
     //error handling
    
      try{
-        const upload = await pinata.upload.public.file(selectedFile)
-        url = "https://gateway.pinata.cloud/ipfs/" + upload.cid
+        const upload = await axios.post({
+          url: '`https://tipper-server.onrender.com/api/nft/upload',
+          data: selectedFile
+        })
+
+        url = upload.data.url
      }catch(error){
          return {
              success: false,
