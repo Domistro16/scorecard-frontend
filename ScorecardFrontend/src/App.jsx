@@ -9,6 +9,7 @@ import { parseEther } from 'viem'
 import { GoDownload } from "react-icons/go";
 import { GoScreenFull } from "react-icons/go";
 import contractABI from '../contract-abi.json';
+import { PinataSDK } from 'pinata';
 
 
 const pinata = new PinataSDK({
