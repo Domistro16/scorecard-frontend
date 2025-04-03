@@ -112,7 +112,7 @@ function App() {
         // Convert canvas to image and update state
         setImg(canvas.toDataURL("image/png"));
         canvas.toBlob((blob) => {
-          const file = new File([blob], "MySafuScorecard.png", { type: "image/jpg" });
+          const file = new File([blob], "MySafuScorecard.png", { type: "image/png" });
           setSelectedFile(file);
       }, "image/jpg");
       };
