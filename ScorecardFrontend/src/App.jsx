@@ -195,8 +195,9 @@ function App() {
   };
 
  
-const pinToIPFS = async (file) => {
+const pinToIPFS = async (file, metadata) => {
   try {
+    if(metadata == false){
       const formData = new FormData();
       formData.append("file", file); // Attach the file
 
@@ -212,6 +213,15 @@ const pinToIPFS = async (file) => {
 
       const url = upload.data.url;
       return { success: true, pinataUrl: url };
+    }else{
+      const upload = await axios.post(
+        "https://tipper-server.onrender.com/api/nft/uploadMetadata",
+        file)
+
+        const url = upload.data.url;
+        return { success: true, pinataUrl: url };
+
+    }
   } catch (error) {
       return { success: false, message: error.message };
   }
