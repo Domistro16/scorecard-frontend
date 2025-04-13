@@ -5,7 +5,7 @@ import axios from 'axios'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
 import { useSendTransaction, useWriteContract, useReadContract } from 'wagmi'
-import { parseEther } from 'viem'
+import { parseEther } from 'ethers';
 import { GoDownload } from "react-icons/go";
 import { GoScreenFull } from "react-icons/go";
 import contractABI from '../contract-abi.json';
