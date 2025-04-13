@@ -4,12 +4,14 @@ import { createCanvas, loadImage, registerFont } from 'canvas';
 import axios from 'axios'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
-import { useSendTransaction, useWriteContract } from 'wagmi'
+import { useSendTransaction, useWriteContract, useReadContract } from 'wagmi'
 import { parseEther } from 'viem'
 import { GoDownload } from "react-icons/go";
 import { GoScreenFull } from "react-icons/go";
 import contractABI from '../contract-abi.json';
+import priceABI from '../price-abi.json'
 import { PinataSDK } from 'pinata';
+import { parseEther } from 'viem';
 
 
 const pinata = new PinataSDK({
@@ -241,7 +243,9 @@ const pinToIPFS = async (file, metadata) => {
    
     console.log('minting')
      try{
-        url = await pinToIPFS(selectedFile, false)
+        const res = await pinToIPFS(selectedFile, false)
+
+        url = res.pinataUrl;
      }catch(error){
          return {
              success: false,
@@ -265,12 +269,24 @@ const pinToIPFS = async (file, metadata) => {
      const tokenURI = pinataResponse.pinataUrl;  
      try{
 
+      const {data} = useReadContract({
+        abi: priceABI,
+        functionName: 'latestRoundData',
+        address: import.meta.env.VITE_CONTRACT,
+        args: [],
+      });
+      if(data){
+        const [, answer, , , ] = data;
+
      writeContract({
       abi: contractABI,
       functionName: 'mintNFT',
       address: contractAddress,
       args: [tokenURI],
+      value: parseEther((5 / answer).toString()),
      })
+
+    }
 
      return {
       success: true,
