@@ -34,8 +34,7 @@ function App() {
   const [donated, setDonated] = useState(false)
   const [src, setImg] = useState(null)
   const [selectedFile, setSelectedFile] = useState(null)
-  const { data: hash, writeContract } = useWriteContract();
-  const { data: hashe, isPending, sendTransaction } = useSendTransaction();
+  const { data: hash, isPending, writeContract } = useWriteContract();
 
 
 
@@ -255,7 +254,7 @@ const pinToIPFS = async (file, metadata) => {
      const metadata = new Object();
      metadata.name = `SafuScorecard`;
      metadata.image = url;
-     metadata.description = `${address} SafuScorecard`;
+     metadata.description = `${address}'s SafuScorecard`;
    
      //make pinata call
      const pinataResponse = await pinToIPFS(metadata, true);
@@ -331,7 +330,7 @@ const pinToIPFS = async (file, metadata) => {
         {!donated ?
         <div className='text-center mt-6 text-gray-900 dark:text-gray-300'>
             <p>Do you like this result? Click the button below if you will like to mint this as an NFT</p>
-            <button className='mt-6 h-15 w-35 p-4 bg-orange-400 rounded-full hover:bg-orange-700 cursor-pointer transition-all ' onClick={async () => await mintNFT() }>
+            <button className='mt-6 h-15 w-35 p-4 bg-orange-400 rounded-full hover:bg-orange-700 cursor-pointer transition-all ' onClick={async () => await mintNFT() } disabled={isPending || account.isDisconnected}>
                 Mint NFT
             </button>
         </div>
