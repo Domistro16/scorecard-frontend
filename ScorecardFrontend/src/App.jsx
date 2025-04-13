@@ -11,7 +11,6 @@ import { GoScreenFull } from "react-icons/go";
 import contractABI from '../contract-abi.json';
 import priceABI from '../price-abi.json'
 import { PinataSDK } from 'pinata';
-import { parseEther } from 'viem';
 
 
 const pinata = new PinataSDK({
