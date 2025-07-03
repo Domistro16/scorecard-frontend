@@ -1,0 +1,14 @@
+@import url("https://fonts.cdnfonts.com/css/gilroy-bold");
+@import "tailwindcss";
+
+@theme {
+  --font-bold: "Gilroy-bold", sans-serif;
+  --font-heavy: "Gilroy-Heavy", sans-serif;
+  --font-light: "Gilroy-Light", sans-serif;
+  --font-semibold: "Gilroy-Medium", sans-serif;
+  --font-gilroy: "Gilroy-Regular", sans-serif;
+}
+
+body {
+  @apply bg-gray-100 dark:bg-gray-900 font-gilroy;
+}
