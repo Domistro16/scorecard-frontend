@@ -114,18 +114,18 @@ const App: React.FC = () => {
         size: 14,
       } as TextBox,
       first: {
-        x: 0.51,
+        x: 0.5,
         y: 0.443,
         width: 0.11,
         align: "left",
-        size: 10,
+        size: 9,
       } as TextBox,
       last: {
-        x: 0.67,
+        x: 0.68,
         y: 0.443,
         width: 0.11,
         align: "right",
-        size: 10,
+        size: 19,
       } as TextBox,
       tag: {
         x: 0.49,
@@ -199,8 +199,8 @@ const App: React.FC = () => {
         const textMap: Record<string, string> = {
           holder: `${f}...${l}`,
           tx: count,
-          first: first !== 'null' ? first : "NONE",
-          last: last !== 'null' ? last : "NONE",
+          first: first !== "null" ? first : "NONE",
+          last: last !== "null" ? last : "NONE",
           tag: status,
           unknown: cat,
         };
@@ -444,7 +444,9 @@ const App: React.FC = () => {
               </p>
               <div className="flex flex-col lg:flex-row items-center mx-auto">
                 <button
-                  className="mt-6 h-15 font-semibold w-35 p-4 bg-orange-700 rounded-full hover:bg-orange-800 cursor-pointer transition-all "
+                  className={`mt-6 h-15 font-semibold w-35 p-4 bg-orange-700 rounded-full hover:bg-orange-800 cursor-pointer transition-all ${
+                    account.isDisconnected ? "cursor-not-allowed" : ""
+                  }`}
                   onClick={async () => await mintNFT()}
                   disabled={isPending || account.isDisconnected || loading}
                 >
