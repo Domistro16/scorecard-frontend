@@ -7,7 +7,7 @@ Safucard is a React-based decentralized application (dApp) that allows users to 
 ## Features
 
 * 🔌 Web3 wallet integration (via RainbowKit and wagmi)
-* 📈 Fetches custom scorecard data from an external API
+* 📈 Fetches custom scorecard data from SafuServer's API
 * 🎨 Renders a personalized canvas image using Fabric.js
 * 🖼️ Downloads or fullscreen preview of generated SafuCard
 * 🌐 Uploads assets to IPFS via backend proxy (Pinata)
@@ -32,7 +32,7 @@ Safucard is a React-based decentralized application (dApp) that allows users to 
 * Node.js v18+
 * A wallet (e.g. MetaMask)
 * An API endpoint (for score data and Pinata uploads)
-* Deployed smart contract address and ABI
+* Deployed NFT Contract Address and ABI
 
 ### Install Dependencies
 

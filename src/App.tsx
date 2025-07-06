@@ -511,7 +511,6 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {/* Results Section */}
     </div>
   );
 };
