@@ -114,18 +114,18 @@ const App: React.FC = () => {
         size: 14,
       } as TextBox,
       first: {
-        x: 0.5,
+        x: 0.507,
         y: 0.443,
         width: 0.11,
         align: "left",
-        size: 9,
+        size: 8,
       } as TextBox,
       last: {
-        x: 0.68,
+        x: 0.665,
         y: 0.443,
         width: 0.11,
         align: "right",
-        size: 19,
+        size: 8,
       } as TextBox,
       tag: {
         x: 0.49,
@@ -444,9 +444,7 @@ const App: React.FC = () => {
               </p>
               <div className="flex flex-col lg:flex-row items-center mx-auto">
                 <button
-                  className={`mt-6 h-15 font-semibold w-35 p-4 bg-orange-700 rounded-full hover:bg-orange-800 cursor-pointer transition-all ${
-                    account.isDisconnected ? "cursor-not-allowed" : ""
-                  }`}
+                  className={`mt-6 h-15 font-semibold w-35 p-4 bg-orange-700 rounded-full hover:bg-orange-800 cursor-pointer transition-all disabled:cursor-not-allowed`}
                   onClick={async () => await mintNFT()}
                   disabled={isPending || account.isDisconnected || loading}
                 >
