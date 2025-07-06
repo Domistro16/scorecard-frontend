@@ -59,7 +59,7 @@ npm run dev
 ## Usage
 
 1. Connect your Web3 wallet using the **Connect Wallet** button.
-2. Enter your Ethereum wallet address in the input field.
+2. Enter your BNB wallet address in the input field.
 3. Click **Search** to fetch scorecard data and generate your SafuCard.
 4. Click **Download** or **Fullscreen** to preview or save the image.
 5. Optionally, click **Mint NFT** to upload to IPFS and mint the card as an NFT.
